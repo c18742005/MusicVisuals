@@ -1,8 +1,8 @@
 # Music Visualiser Project
 
-Name:
+Name: Steven Aherne
 
-Student Number: 
+Student Number: C18742005
 
 ## Instructions
 - Fork this repository and use it a starter project for your assignment
