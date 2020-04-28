@@ -1,15 +1,14 @@
 package c18742005;
 
 import processing.core.PApplet;
-import processing.core.PImage;
 
 public class Landscape extends PApplet
 {
-    PImage ship;
+    Sky sky = new Sky();
     
     int cols, rows;
     int scl = 20;
-    int w = 1000;
+    int w = 2700;
     int h = 800;
 
     float flying = 0;
@@ -25,7 +24,7 @@ public class Landscape extends PApplet
 
     public void settings()
     {
-        size(600, 600, P3D);
+        size(800, 800, P3D);
     }
 
     public void keyPressed()
@@ -35,6 +34,8 @@ public class Landscape extends PApplet
 
     public void waterColour(int x, int y)
     {
+        colorMode(RGB);
+
         if(terrain[x][y] > 15)
         {
             fill(255); // white
@@ -62,6 +63,8 @@ public class Landscape extends PApplet
     }
 
     public void draw() {
+        colorMode(HSB);
+        sky.renderSky(this);
         flying -= 0.02;
 
         float yoff = flying;
@@ -76,11 +79,11 @@ public class Landscape extends PApplet
             yoff += 0.2;
         }
 
-        background(153, 187, 255);
+        //background(153, 187, 255);
         noStroke();
         fill(0, 0, 255);
 
-        translate(width/2, height/2+50);
+        translate(width/2, (height/2) + 200);
         rotateX(PI/3);
         translate(-w/2, -h/2);
 
