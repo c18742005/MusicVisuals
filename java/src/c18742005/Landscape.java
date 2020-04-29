@@ -5,6 +5,9 @@ import processing.core.PApplet;
 public class Landscape extends PApplet
 {
     Sky sky = new Sky();
+    Sun sun = new Sun();
+    Moon moon = new Moon();
+
     
     int cols, rows;
     int scl = 20;
@@ -30,6 +33,11 @@ public class Landscape extends PApplet
     public void keyPressed()
     {
     
+    }
+
+    public void resetCelestial()
+    {
+
     }
 
     public void waterColour(int x, int y)
@@ -65,6 +73,26 @@ public class Landscape extends PApplet
     public void draw() {
         colorMode(HSB);
         sky.renderSky(this);
+
+        if(sky.getTime() > 5 && sky.getTime() < 18)
+        {
+            moon.render(this);
+            sun.setXPos(-100);
+            sun.setYPos(400);
+            sun.setVelX(0.6f);
+            sun.setVelY(-0.8f);
+            sun.setGrav(0.001f);
+        }
+        else 
+        {
+            sun.render(this);
+            moon.setXPos(-100);
+            moon.setYPos(400);
+            moon.setVelX(0.6f);
+            moon.setVelY(-0.8f);
+            moon.setGrav(0.001f);
+
+        }
         flying -= 0.02;
 
         float yoff = flying;

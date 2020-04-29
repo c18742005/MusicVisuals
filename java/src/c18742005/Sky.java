@@ -18,7 +18,7 @@ public class Sky
 
     public Sky()
     {
-        this.time = 0;
+        this.time = 18;
     }
 
     public void renderSky(PApplet pa)
@@ -28,12 +28,12 @@ public class Sky
         if(time < 12)
         {
             pa.background(135 , 94 ,227 - time * 18);
-            time += 0.01;
+            time += 0.006;
         }
         else
         {
             pa.background(135, 94, 11 + (time % 12) * 18);
-            time += 0.01;
+            time += 0.006;
         }
     }
 }
