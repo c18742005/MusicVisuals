@@ -5,44 +5,37 @@ import java.lang.Math;
 
 public class Moon
 {
+    // create variables to control the movement of the moon in the sky
+    // X and Y positions of the moon in the sky
     private float xPos = -100;
     private float yPos = 400;
+
+    // X and Y velocity of the moons movement 
     private float velX = 0.6f;
     private float velY = -0.8f;
+
+    // gravity effect
     private float gravity = 0.001f;
 
-    public void setXPos(float x)
+    // method to reset the moon to its starting position
+    public void resetMoon()
     {
-        this.xPos = x;
+        xPos = -100;
+        yPos = 400;
+        velX = 0.6f;
+        velY = -0.8f;
+        gravity = 0.001f;
     }
 
-    public void setYPos(float y)
-    {
-        this.yPos = y;
-    }
-
-    public void setVelX(float x)
-    {
-        this.velX = x;
-    }
-
-    public void setVelY(float y)
-    {
-        this.velY = y;
-    }
-
-    public void setGrav(float g)
-    {
-        this.gravity = g;
-    }
-
-    public void moveMoon(PApplet pa)
+    // method to move the moon in the sky
+    private void moveMoon(PApplet pa)
     {
         velY += gravity;
         yPos += velY;
         xPos += velX;
     }
 
+    // method that takes a range of numbers and returns a random number from them
     public float getRandomNum(float min, float max)
     {
         float num = (float)(Math.random()*((max - min) + 1)) + min;
@@ -50,6 +43,7 @@ public class Moon
         return num;
     }
 
+    // Constructor
     public Moon()
     {
         this.xPos = -100;
@@ -59,15 +53,17 @@ public class Moon
         this.gravity = 0.001f;
     }
 
+    // render the moon and stars to the screen
     public void render(PApplet pa)
     {
         moveMoon(pa);
         pa.fill(255);
         pa.ellipse(xPos, yPos, 80, 80);
 
+        // loop to draw randomised stars to the screen
         for (int i = 0; i < 35; i++)
-            {
-                pa.ellipse(getRandomNum(0, pa.width), getRandomNum(-pa.height, pa.height / 2), 4, 4);
-            }
+        {
+            pa.ellipse(getRandomNum(0, pa.width), getRandomNum(-pa.height, pa.height / 2), 4, 4);
+        }
     }
 }

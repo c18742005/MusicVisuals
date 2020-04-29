@@ -4,44 +4,37 @@ import processing.core.PApplet;
 
 public class Sun
 {
+    // create variables to control the movement of the sun in the sky
+    // X and Y positions of the sun in the sky
     private float xPos = -100;
     private float yPos = 400;
+
+    // X and Y velocity of the suns movement 
     private float velX = 0.6f;
     private float velY = -0.8f;
+
+    // gravity effect
     private float gravity = 0.001f;
 
-    public void setXPos(float x)
+    // method to reset the sun to its starting position
+    public void resetSun()
     {
-        this.xPos = x;
+        xPos = -100;
+        yPos = 400;
+        velX = 0.6f;
+        velY = -0.8f;
+        gravity = 0.001f;
     }
 
-    public void setYPos(float y)
-    {
-        this.yPos = y;
-    }
-
-    public void setVelX(float x)
-    {
-        this.velX = x;
-    }
-
-    public void setVelY(float y)
-    {
-        this.velY = y;
-    }
-
-    public void setGrav(float g)
-    {
-        this.gravity = g;
-    }
-
-    public void moveSun(PApplet pa)
+    // method to move the sun in the sky
+    private void moveSun(PApplet pa)
     {
         velY += gravity;
         yPos += velY;
         xPos += velX;
     }
 
+    // Constructor
     public Sun()
     {
         this.xPos = -100;
@@ -51,6 +44,7 @@ public class Sun
         this.gravity = 0.001f;
     }
 
+    // method to render the sun to the screen
     public void render(PApplet pa)
     {
         moveSun(pa);

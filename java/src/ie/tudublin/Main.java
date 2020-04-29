@@ -13,6 +13,7 @@ public class Main
         processing.core.PApplet.runSketch( a, new CubeVisual());		
 	}
 
+	// method to start playing the module project
 	public void startLandscape()
 	{
 		String[] a = {"MAIN"};

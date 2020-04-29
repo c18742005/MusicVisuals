@@ -4,25 +4,26 @@ import processing.core.PApplet;
 
 public class Landscape extends PApplet
 {
+    // Create the sky, moon and sun objects
     Sky sky = new Sky();
     Sun sun = new Sun();
     Moon moon = new Moon();
 
-    
+    // Create variables to control the generation of the water
     int cols, rows;
-    int scl = 20;
+    int waveDensity = 15;
     int w = 2700;
     int h = 800;
 
-    float flying = 0;
-
-    float[][] terrain;
+    // Create variables to control the flow of the water
+    float waterFlow = 0;
+    float[][] waves;
 
     public void setup() 
     {
-        cols = w / scl;
-        rows = h/ scl;
-        terrain = new float[cols][rows];
+        cols = w / waveDensity;
+        rows = h/ waveDensity;
+        waves = new float[cols][rows];
     }
 
     public void settings()
@@ -35,97 +36,101 @@ public class Landscape extends PApplet
     
     }
 
-    public void resetCelestial()
+    // method to render the water to the screen
+    public void renderWater()
     {
+        waterFlow -= 0.02; // make the water flow towards the user
 
+        // loops to create the water at each point and place it into the waves 2D array
+        float offsetY = waterFlow;
+        for (int y = 0; y < rows; y++) 
+        {
+            float offsetX = 0;
+            for (int x = 0; x < cols; x++)
+            {
+                // map a value from 0 to 1 to -25 to 25 where -25 is deep water and 25 is the tip of a wave
+                // noise gives us a number between 0 to 1 and ensures more natural looking water generation
+                waves[x][y] = map(noise(offsetX, offsetY), 0, 1, -25, 25);
+                offsetX += 0.2;
+            }
+            offsetY += 0.2;
+        }
+
+        noStroke();
+        fill(0, 0, 255);
+
+        // translate and rotate the X axis to make it appear the water is coming at the user
+        translate(width / 2, (height / 2) + 200);
+        rotateX(PI / 3);
+        translate(-w / 2, -h / 2);
+
+        // loop to actually draw the water to the screen
+        for (int y = 0; y < rows-1; y++) 
+        {
+            // begin drawing our triangle strip shape
+            beginShape(TRIANGLE_STRIP);
+            for (int x = 0; x < cols; x++) 
+            {
+                // colour the water based on its depth
+                waterColour(x, y);
+                
+                // get 3d position of our vertices and draw them to screen
+                vertex(x * waveDensity, y * waveDensity, waves[x][y]);
+                vertex(x * waveDensity, (y + 1) * waveDensity, waves[x][y+1]);
+            }
+            endShape(); // end of drawing our shape
+        }
     }
 
+    // method to control the colour of the water
     public void waterColour(int x, int y)
     {
         colorMode(RGB);
 
-        if(terrain[x][y] > 15)
+        // make the tip of the waves white
+        if(waves[x][y] > 15)
         {
-            fill(255); // white
+            fill(255);
         }
-        else if(terrain[x][y] > 12 && terrain[x][y] < 15)
+        else if(waves[x][y] > 12 && waves[x][y] < 15) // make higher sections of water a lighter blue
         {
             fill(179, 217, 255);
         }
-        else if(terrain[x][y] > 7 && terrain[x][y] < 12)
+        else if(waves[x][y] > 7 && waves[x][y] < 12)
         {
             fill(128, 191, 255); // light blue
         }
-        else if(terrain[x][y] <-10 && terrain[x][y] > -15)
+        else if(waves[x][y] <-10 && waves[x][y] > -15) // make deeper sections of water a darker blue
         {
             fill(0, 77, 153);
         }
-        else if(terrain[x][y] < -15)
+        else if(waves[x][y] < -15) // make deepest parts of water almost black
         {
-            fill(0, 31, 77); // dark blue
+            fill(0, 31, 77);
         }
         else
         {
-            fill(0, 102, 204); // Blue
+            fill(0, 102, 204); // Make normal leveled water blue
         }
     }
 
-    public void draw() {
+    public void draw() 
+    {
         colorMode(HSB);
-        sky.renderSky(this);
+        sky.renderSky(this); // render the sky
 
+        // during the night render the moon and reset the sun
         if(sky.getTime() > 5 && sky.getTime() < 18)
         {
             moon.render(this);
-            sun.setXPos(-100);
-            sun.setYPos(400);
-            sun.setVelX(0.6f);
-            sun.setVelY(-0.8f);
-            sun.setGrav(0.001f);
+            sun.resetSun();
         }
-        else 
+        else // during the day render the sun and reset the moon
         {
             sun.render(this);
-            moon.setXPos(-100);
-            moon.setYPos(400);
-            moon.setVelX(0.6f);
-            moon.setVelY(-0.8f);
-            moon.setGrav(0.001f);
-
-        }
-        flying -= 0.02;
-
-        float yoff = flying;
-        for (int y = 0; y < rows; y++) 
-        {
-            float xoff = 0;
-            for (int x = 0; x < cols; x++)
-            {
-                terrain[x][y] = map(noise(xoff, yoff), 0, 1, -25, 25);
-                xoff += 0.2;
-            }
-            yoff += 0.2;
+            moon.resetMoon();
         }
 
-        //background(153, 187, 255);
-        noStroke();
-        fill(0, 0, 255);
-
-        translate(width/2, (height/2) + 200);
-        rotateX(PI/3);
-        translate(-w/2, -h/2);
-
-        for (int y = 0; y < rows-1; y++) 
-        {
-            beginShape(TRIANGLE_STRIP);
-            for (int x = 0; x < cols; x++) 
-            {
-                waterColour(x, y);
-                
-                vertex(x*scl, y*scl, terrain[x][y]);
-                vertex(x*scl, (y+1)*scl, terrain[x][y+1]);
-            }
-            endShape();
-        }
+        renderWater(); // render the water to the screen
     }
 } 
