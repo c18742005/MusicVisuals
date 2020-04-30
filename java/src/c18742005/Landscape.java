@@ -1,13 +1,14 @@
 package c18742005;
 
-import processing.core.PApplet;
+import ie.tudublin.Visual;
 
-public class Landscape extends PApplet
+public class Landscape extends Visual
 {
     // Create the sky, moon and sun objects
     Sky sky = new Sky();
     Sun sun = new Sun();
     Moon moon = new Moon();
+    Clouds cloud = new Clouds();
 
     // Create variables to control the generation of the water
     int cols, rows;
@@ -21,9 +22,16 @@ public class Landscape extends PApplet
 
     public void setup() 
     {
+        startMinim();
+
         cols = w / waveDensity;
         rows = h/ waveDensity;
         waves = new float[cols][rows];
+        cloud.resetCloud();
+
+        loadAudio("viking.mp3");
+        getAudioPlayer().cue(0);
+        getAudioPlayer().play();
     }
 
     public void settings()
@@ -33,7 +41,17 @@ public class Landscape extends PApplet
 
     public void keyPressed()
     {
-    
+        if (key == ' ')
+        {
+            if(sky.getTime() > 5 && sky.getTime() < 18)
+            {
+                sky.setTime(18);
+            }
+            else
+            {
+                sky.setTime(5);
+            }
+        }
     }
 
     // method to render the water to the screen
@@ -124,10 +142,12 @@ public class Landscape extends PApplet
         {
             moon.render(this);
             sun.resetSun();
+            cloud.resetCloud();
         }
         else // during the day render the sun and reset the moon
         {
             sun.render(this);
+            cloud.render(this);
             moon.resetMoon();
         }
 

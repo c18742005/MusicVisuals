@@ -28,7 +28,7 @@ public class Moon
     }
 
     // method to move the moon in the sky
-    private void moveMoon(PApplet pa)
+    private void moveMoon()
     {
         velY += gravity;
         yPos += velY;
@@ -56,7 +56,7 @@ public class Moon
     // render the moon and stars to the screen
     public void render(PApplet pa)
     {
-        moveMoon(pa);
+        moveMoon();
         pa.fill(255);
         pa.ellipse(xPos, yPos, 80, 80);
 

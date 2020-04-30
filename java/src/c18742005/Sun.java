@@ -6,15 +6,15 @@ public class Sun
 {
     // create variables to control the movement of the sun in the sky
     // X and Y positions of the sun in the sky
-    private float xPos = -100;
-    private float yPos = 400;
+    private float xPos;
+    private float yPos;
 
     // X and Y velocity of the suns movement 
-    private float velX = 0.6f;
-    private float velY = -0.8f;
+    private float velX;
+    private float velY;
 
     // gravity effect
-    private float gravity = 0.001f;
+    private float gravity;
 
     // method to reset the sun to its starting position
     public void resetSun()
@@ -27,7 +27,7 @@ public class Sun
     }
 
     // method to move the sun in the sky
-    private void moveSun(PApplet pa)
+    private void moveSun()
     {
         velY += gravity;
         yPos += velY;
@@ -47,7 +47,7 @@ public class Sun
     // method to render the sun to the screen
     public void render(PApplet pa)
     {
-        moveSun(pa);
+        moveSun();
         pa.fill(43, 171, 255);
         pa.ellipse(xPos, yPos, 80, 80);
     }
