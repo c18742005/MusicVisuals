@@ -16,6 +16,57 @@ public class Sun
     // gravity effect
     private float gravity;
 
+    // Accessor methods
+    public void setXPos(float x)
+    {
+        xPos = x;
+    }
+
+    public void setYPos(float y)
+    {
+        yPos = y;
+    }
+
+    public void setVelX(float x)
+    {
+        velX = x;
+    }
+
+    public void setVelY(float y)
+    {
+        velY = y;
+    }
+
+    public void setGravity(float g)
+    {
+        gravity = g;
+    }
+
+    public void getXPos(float x)
+    {
+        xPos = x;
+    }
+
+    public float getYPos()
+    {
+        return yPos;
+    }
+
+    public float getVelX()
+    {
+        return velX;
+    }
+
+    public float getVelY()
+    {
+        return velY;
+    }
+
+    public float getGravity()
+    {
+        return gravity;
+    }
+
     // method to reset the sun to its starting position
     public void resetSun()
     {

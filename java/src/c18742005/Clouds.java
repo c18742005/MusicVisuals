@@ -12,11 +12,65 @@ public class Clouds
     private float cloudSize;
     private float cloudColour;
 
+    // Accessor methods
+    public float getCloudVel()
+    {
+        return cloudVel;
+    }
+
+    public float getCloudX()
+    {
+        return cloudX;
+    }
+
+    public float getCloudY()
+    {
+        return cloudY;
+    }
+
+    public float getCloudSize()
+    {
+        return cloudSize;
+    }
+
+    public float getCloudColour()
+    {
+        return cloudColour;
+    }
+
+    public void setCloudVel(float cV)
+    {
+        cloudVel = cV;
+    }
+
+    public void setCloudX(float cX)
+    {
+        cloudX = cX;
+    }
+
+    public void setCloudY(float cY)
+    {
+        cloudY = cY;
+    }
+
+    public void setCloudSize(float cS)
+    {
+        cloudSize = cS;
+    }
+
+    public void setCloudColour(float cC)
+    {
+        cloudColour = cC;
+    }
+
+    // Methods that can be used on Clouds
+    // move cloud across the X axis
     private void moveCloud()
     {
         cloudX += cloudVel;
     }
 
+    // reset cloud to starting position
     public void resetCloud()
     {
         cloudX = -100;
