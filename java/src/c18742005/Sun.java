@@ -20,9 +20,9 @@ public class Sun
     public void resetSun()
     {
         xPos = -100;
-        yPos = 400;
-        velX = 0.6f;
-        velY = -0.8f;
+        yPos = 390;
+        velX = 0.7f;
+        velY = -0.85f;
         gravity = 0.001f;
     }
 
@@ -38,17 +38,22 @@ public class Sun
     public Sun()
     {
         this.xPos = -100;
-        this.yPos = 400;
-        this.velX = 0.6f;
-        this.velY = -0.8f;
+        this.yPos = 390;
+        this.velX = 0.7f;
+        this.velY = -0.85f;
         this.gravity = 0.001f;
     }
 
     // method to render the sun to the screen
-    public void render(PApplet pa)
+    public void render(PApplet pa, float amp)
     {
+        float sunSize = 50 + (amp * 300);
         moveSun();
+        pa.fill(43, 171, 255, 20);
+        pa.ellipse(xPos, yPos, sunSize + 70, sunSize + 70);
+        pa.fill(43, 171, 255, 50);
+        pa.ellipse(xPos, yPos, sunSize + 20, sunSize + 20);
         pa.fill(43, 171, 255);
-        pa.ellipse(xPos, yPos, 80, 80);
+        pa.ellipse(xPos, yPos, sunSize, sunSize);
     }
 }

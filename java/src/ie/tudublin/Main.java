@@ -1,6 +1,5 @@
 package ie.tudublin;
 
-import example.CubeVisual;
 import example.MyVisual;
 import c18742005.Landscape;
 
@@ -10,7 +9,7 @@ public class Main
 	public void startUI()
 	{
 		String[] a = {"MAIN"};
-        processing.core.PApplet.runSketch( a, new CubeVisual());		
+        processing.core.PApplet.runSketch( a, new MyVisual());		
 	}
 
 	// method to start playing the module project

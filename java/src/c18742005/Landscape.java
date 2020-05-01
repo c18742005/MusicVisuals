@@ -30,7 +30,6 @@ public class Landscape extends Visual
         cloud.resetCloud();
 
         loadAudio("viking.mp3");
-        getAudioPlayer().cue(0);
         getAudioPlayer().play();
     }
 
@@ -61,6 +60,7 @@ public class Landscape extends Visual
 
         // loops to create the water at each point and place it into the waves 2D array
         float offsetY = waterFlow;
+
         for (int y = 0; y < rows; y++) 
         {
             float offsetX = 0;
@@ -80,7 +80,7 @@ public class Landscape extends Visual
         // translate and rotate the X axis to make it appear the water is coming at the user
         translate(width / 2, (height / 2) + 200);
         rotateX(PI / 3);
-        translate(-w / 2, -h / 2);
+        translate(-w / 2, (-h / 2));
 
         // loop to actually draw the water to the screen
         for (int y = 0; y < rows-1; y++) 
@@ -134,19 +134,20 @@ public class Landscape extends Visual
 
     public void draw() 
     {
+        calculateAverageAmplitude();
         colorMode(HSB);
         sky.renderSky(this); // render the sky
 
         // during the night render the moon and reset the sun
         if(sky.getTime() > 5 && sky.getTime() < 18)
         {
-            moon.render(this);
+            moon.render(this, getSmoothedAmplitude());
             sun.resetSun();
             cloud.resetCloud();
         }
         else // during the day render the sun and reset the moon
         {
-            sun.render(this);
+            sun.render(this, getSmoothedAmplitude());
             cloud.render(this);
             moon.resetMoon();
         }

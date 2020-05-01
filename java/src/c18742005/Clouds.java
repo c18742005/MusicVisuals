@@ -32,10 +32,10 @@ public class Clouds
         this.cloudX = -100;
     }
 
-    // method to render the sun to the screen
+    // method to render the clouds to the screen
     public void render(PApplet pa)
     {
-        pa.fill(167, 59, cloudColour);
+        pa.fill(167, 59, cloudColour, 200);
 
         pa.ellipse(cloudX + 20, cloudY, cloudSize, cloudSize);
         pa.ellipse(cloudX + 35, cloudY, cloudSize + 10, cloudSize + 10);

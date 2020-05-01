@@ -7,22 +7,22 @@ public class Moon
 {
     // create variables to control the movement of the moon in the sky
     // X and Y positions of the moon in the sky
-    private float xPos = -100;
-    private float yPos = 400;
+    private float xPos;
+    private float yPos;
 
     // X and Y velocity of the moons movement 
-    private float velX = 0.6f;
-    private float velY = -0.8f;
+    private float velX;
+    private float velY;
 
     // gravity effect
-    private float gravity = 0.001f;
+    private float gravity;
 
     // method to reset the moon to its starting position
     public void resetMoon()
     {
         xPos = -100;
-        yPos = 400;
-        velX = 0.6f;
+        yPos = 390;
+        velX = 0.7f;
         velY = -0.8f;
         gravity = 0.001f;
     }
@@ -47,18 +47,24 @@ public class Moon
     public Moon()
     {
         this.xPos = -100;
-        this.yPos = 400;
-        this.velX = 0.6f;
+        this.yPos = 390;
+        this.velX = 0.7f;
         this.velY = -0.8f;
         this.gravity = 0.001f;
     }
 
     // render the moon and stars to the screen
-    public void render(PApplet pa)
+    public void render(PApplet pa, float amp)
     {
+        float moonSize = 65 + (amp * 300);
         moveMoon();
         pa.fill(255);
-        pa.ellipse(xPos, yPos, 80, 80);
+        pa.ellipse(xPos, yPos, moonSize, moonSize);
+        pa.fill(225);
+        pa.ellipse(xPos - 25, yPos + 15, 20, 20);
+        pa.ellipse(xPos - 15, yPos + 30, 10, 10);
+        pa.fill(200);
+        pa.ellipse(xPos + 20, yPos - 20, 7, 7);
 
         // loop to draw randomised stars to the screen
         for (int i = 0; i < 35; i++)
