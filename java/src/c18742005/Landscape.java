@@ -1,6 +1,7 @@
 package c18742005;
 
 import ie.tudublin.Visual;
+import processing.core.PApplet;
 
 public class Landscape extends Visual
 {
@@ -35,7 +36,9 @@ public class Landscape extends Visual
 
     public void settings()
     {
-        size(800, 800, P3D);
+        //size(800, 800, P3D);
+        fullScreen(P3D, SPAN);
+        
     }
 
     public void keyPressed()
@@ -118,7 +121,7 @@ public class Landscape extends Visual
         {
             fill(128, 191, 255); // light blue
         }
-        else if(waves[x][y] <-10 && waves[x][y] > -15) // make deeper sections of water a darker blue
+        else if(waves[x][y] <-8 && waves[x][y] > -15) // make deeper sections of water a darker blue
         {
             fill(0, 77, 153);
         }

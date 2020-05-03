@@ -73,7 +73,7 @@ public class Moon
     {
         xPos = -100;
         yPos = 390;
-        velX = 0.7f;
+        velX = 1.25f;
         velY = -0.8f;
         gravity = 0.001f;
     }
@@ -99,7 +99,7 @@ public class Moon
     {
         this.xPos = -100;
         this.yPos = 390;
-        this.velX = 0.7f;
+        this.velX = 1.25f;
         this.velY = -0.8f;
         this.gravity = 0.001f;
     }
