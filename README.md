@@ -26,13 +26,13 @@ As this is a visual art piece the user does not need much to control the assignm
 # How it works
 
 # What I am most proud of in the assignment
-The element of the assignment that I am most proud of in the assignment is the generation of the sea water and the simulation of the water flow. This required a lot of self directed learning and much trial and error with the code before I could implement it to a satisfactory level. Using the noise() function instead of random() when creating the wave height allowed for a much moer natural looking wave generation. The water feature also involved a lot of translation and rotation along with the use of vertices to get it to work correctly.
+The element of the assignment that I am most proud of is the generation of the sea water and the simulation of the water flow. This required a lot of self directed learning and much trial and error with the code before I could implement it to a satisfactory level. Using the noise() function instead of random() when creating the wave height allowed for a much more natural looking wave generation. The water feature also involved a lot of translation and rotation along with the use of vertices to get it to work correctly.
 
-Getting the sky to react to the passage of time and change colour was also an achievement for me. The brightest time of the day is when time is at 0. As long as it is day time, the sky will keep getting darker until it almost black and it is night time. When it is night the opposite happens and the sky will get brighter until it is day time again.
+Getting the sky to react to the passage of time and change colour was also an achievement for me. The brightest time of the day is when time is at 0. As long as it is day time, the sky will keep getting darker until it is almost black and night begins. When it is night the opposite happens and the sky will get brighter until it is day again.
 
-The random generation of each clouds colour, size and position in the sky is also something that I am proud of. Once the day cycle finishes the clouds drawn to the screen are reset giving them new randmly generated colour, size, speed and positional values meaning the clouds will be different for each cycle of the art piece.
+The random generation of each clouds colour, size and position in the sky is also something that I am proud of. Once the day cycle finishes the clouds drawn to the screen are reset giving them new randomly generated colour, size, speed and positional values meaning the clouds will be different for each cycle of the art piece.
 
-Finally, the sun and moon bodies are something that I put a lot of work into and I am proud of the way they came out. They each have their own velocities across the x and y axis and also have the force of gravity working on them to simulate them setting in the sky. The moon class also draws 35 stars to the screen in randomised positions to light the sky up and help simulate the passage of time.
+Finally, the sun and moon bodies are something that I put a lot of work into and I am proud of the way they came out. They each have their own velocities across the X and Y axis and also have the force of gravity working on them to simulate them setting in the sky. The moon class also draws 35 stars to the screen in randomised positions to light the sky up and help simulate the passage of time.
 
 # Markdown Tutorial
 
