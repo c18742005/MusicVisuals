@@ -107,7 +107,7 @@ public class Moon
     // render the moon and stars to the screen
     public void render(PApplet pa, float amp)
     {
-        float moonSize = 65 + (amp * 300);
+        float moonSize = 80 + (amp * 300);
         moveMoon();
         pa.fill(255);
         pa.ellipse(xPos, yPos, moonSize, moonSize);

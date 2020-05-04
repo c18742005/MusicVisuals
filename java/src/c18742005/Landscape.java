@@ -1,7 +1,6 @@
 package c18742005;
 
 import ie.tudublin.Visual;
-import processing.core.PApplet;
 
 public class Landscape extends Visual
 {
@@ -9,7 +8,7 @@ public class Landscape extends Visual
     Sky sky = new Sky();
     Sun sun = new Sun();
     Moon moon = new Moon();
-    Clouds cloud = new Clouds();
+    Clouds clouds[] = new Clouds[3];
 
     // Create variables to control the generation of the water
     int cols, rows;
@@ -28,17 +27,20 @@ public class Landscape extends Visual
         cols = w / waveDensity;
         rows = h/ waveDensity;
         waves = new float[cols][rows];
-        cloud.resetCloud();
+        for(int i = 0; i < 3; i++)
+        {
+            Clouds cloud = new Clouds();
+            clouds[i] = cloud;
+        }
 
+        // load an play the audio
         loadAudio("viking.mp3");
         getAudioPlayer().play();
     }
 
     public void settings()
     {
-        //size(800, 800, P3D);
         fullScreen(P3D, SPAN);
-        
     }
 
     public void keyPressed()
@@ -146,12 +148,19 @@ public class Landscape extends Visual
         {
             moon.render(this, getSmoothedAmplitude());
             sun.resetSun();
-            cloud.resetCloud();
+            for(int i = 0; i < 3; i++)
+            {
+                clouds[i].resetCloud();
+            }
         }
         else // during the day render the sun and reset the moon
         {
             sun.render(this, getSmoothedAmplitude());
-            cloud.render(this);
+            for(int i = 0; i < 3; i++)
+            {
+                clouds[i].render(this);
+            }
+
             moon.resetMoon();
         }
 

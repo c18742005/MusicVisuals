@@ -73,17 +73,22 @@ public class Clouds
     // reset cloud to starting position
     public void resetCloud()
     {
-        cloudX = -100;
+        cloudVel = (float)(Math.random()*((1.4f - 1.25f) + 1)) + 1.25f;
+        cloudX = (float)(Math.random()*((-200 - 80) + 1)) - 100;
         cloudColour = (float)(Math.random()*((255 - 120) + 1)) + 120;
-        cloudSize = (float)(Math.random()*((250 - 120) + 1)) + 120;
-        cloudY = (float)(Math.random()*((350 - cloudSize) + 1)) + cloudSize;
+        cloudSize = (float)(Math.random()*((150 - 120) + 1)) + 120;
+        cloudY = (float)(Math.random()*((450 - cloudSize) + 1)) + cloudSize;
     }
 
     // Constructor
     public Clouds()
     {
-        this.cloudVel = 1.25f;
-        this.cloudX = -100;
+        this.cloudVel = (float)(Math.random()*((1.4f - 1.25f) + 1)) + 1.25f;
+        this.cloudX = (float)(Math.random()*((-200 - 80) + 1)) - 100;
+        this.cloudColour = (float)(Math.random()*((255 - 120) + 1)) + 120;
+        this.cloudSize = (float)(Math.random()*((100 - 80) + 1)) + 80;
+        this.cloudY = (float)(Math.random()*((450 - cloudSize) + 1)) + cloudSize;
+        
     }
 
     // method to render the clouds to the screen
@@ -91,7 +96,8 @@ public class Clouds
     {
         pa.fill(167, 59, cloudColour, 225);
 
-        pa.ellipse(cloudX + cloudSize / 2, cloudY + cloudSize / 4, cloudSize * 0.75f, cloudSize * 0.75f);
+        pa.ellipse(cloudX + cloudSize / 4, cloudY + cloudSize / 4, cloudSize * 0.75f, cloudSize * 0.75f);
+        pa.ellipse(cloudX + cloudSize * 0.75f, cloudY + cloudSize / 4, cloudSize * 0.75f, cloudSize * 0.75f);
         pa.ellipse(cloudX, cloudY + cloudSize / 4, cloudSize / 2, cloudSize / 2);
         pa.ellipse(cloudX + cloudSize, cloudY + cloudSize / 4, cloudSize / 2, cloudSize / 2);
         pa.ellipse(cloudX + cloudSize / 4, cloudY, cloudSize / 2, cloudSize / 2);
