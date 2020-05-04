@@ -88,7 +88,6 @@ public class Clouds
         this.cloudColour = (float)(Math.random()*((255 - 120) + 1)) + 120;
         this.cloudSize = (float)(Math.random()*((100 - 80) + 1)) + 80;
         this.cloudY = (float)(Math.random()*((450 - cloudSize) + 1)) + cloudSize;
-        
     }
 
     // method to render the clouds to the screen
