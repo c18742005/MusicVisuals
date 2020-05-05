@@ -120,7 +120,7 @@ public class Moon
         // loop to draw randomised stars to the screen
         for (int i = 0; i < 35; i++)
         {
-            pa.ellipse(getRandomNum(0, pa.width), getRandomNum(-pa.height, pa.height / 2), 4, 4);
+            pa.ellipse(getRandomNum(0, pa.width), getRandomNum(-pa.height, pa.height / 2), 5, 5);
         }
     }
 }

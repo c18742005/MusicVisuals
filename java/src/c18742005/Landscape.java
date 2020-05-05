@@ -8,6 +8,7 @@ public class Landscape extends Visual
     Sky sky = new Sky();
     Sun sun = new Sun();
     Moon moon = new Moon();
+    Bird bird = new Bird();
     Clouds clouds[] = new Clouds[3];
 
     // Create variables to control the generation of the water
@@ -61,7 +62,7 @@ public class Landscape extends Visual
     // method to render the water to the screen
     public void renderWater()
     {
-        waterFlow -= 0.02; // make the water flow towards the user
+        waterFlow += 0.02; // make the water flow towards the user
 
         // loops to create the water at each point and place it into the waves 2D array
         float offsetY = waterFlow;
@@ -83,6 +84,7 @@ public class Landscape extends Visual
         fill(0, 0, 255);
 
         // translate and rotate the X axis to make it appear the water is coming at the user
+        pushMatrix();
         translate(width / 2, (height / 2) + 200);
         rotateX(PI / 3);
         translate(-w / 2, (-h / 2));
@@ -103,6 +105,7 @@ public class Landscape extends Visual
             }
             endShape(); // end of drawing our shape
         }
+        popMatrix();
     }
 
     // method to control the colour of the water
@@ -162,6 +165,15 @@ public class Landscape extends Visual
             }
 
             moon.resetMoon();
+        }
+
+        if(mouseX < width && mouseY < 500)
+        {
+            bird.render(this, mouseX, mouseY, sky.getTime());
+        }
+        else if(mouseY > 500)
+        {
+            bird.render(this, mouseX, sky.getTime());
         }
 
         renderWater(); // render the water to the screen
