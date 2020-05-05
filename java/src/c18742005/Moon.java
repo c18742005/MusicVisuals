@@ -1,3 +1,8 @@
+/*
+    Class to control the Moon object
+    Draws the moon to the screen, resets the moon and moves the moon
+*/
+
 package c18742005;
 
 import processing.core.PApplet;

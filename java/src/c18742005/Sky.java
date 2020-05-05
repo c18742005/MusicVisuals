@@ -1,3 +1,8 @@
+/*
+    Class to control the Sky
+    Controls the colour of the sky at each given time 
+*/
+
 package c18742005;
 
 import processing.core.PApplet;

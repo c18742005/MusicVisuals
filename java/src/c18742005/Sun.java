@@ -1,3 +1,8 @@
+/*
+    Class to control the sun object
+    Draws the sun to the screen, resets the sun and moves the sun
+*/
+
 package c18742005;
 
 import processing.core.PApplet;

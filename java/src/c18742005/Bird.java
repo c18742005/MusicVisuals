@@ -1,9 +1,15 @@
+/*  
+    Class that draws bird objects to the screen 
+    Class controls the movement of the bird on screen
+*/
+
 package c18742005;
 
 import processing.core.PApplet;
 
 public class Bird
 {
+    // Variables to control the x and y position of the bird on screen
     private float birdX;
     private float birdY;
 
@@ -14,10 +20,10 @@ public class Bird
         this.birdY = 200;
     }
 
-    // render the bird to the screen
+    // method to render the bird to the screen
     public void render(PApplet pa, float x, float y, float time)
     {   
-        // make bird white in the day or darker at night
+        // make bird white in the day or darker looking at night
         if(time > 5 && time < 18)
         {
             pa.fill(180);
@@ -27,6 +33,7 @@ public class Bird
             pa.fill(255);
         }
 
+        // if mouse x position is in front of birds current position, draw the bird flying to the right
         if(pa.mouseX >= birdX)
         {
             birdX = x;
@@ -47,7 +54,7 @@ public class Bird
 
             pa.noStroke();
         }
-        else
+        else // if mouse x position is behind the birds current x position draw the bird flying to the left
         {
             birdX = x + 1;
             birdY = y;
@@ -69,9 +76,11 @@ public class Bird
         }
     }
 
+    // overloading the render method to draw the bird to the screen when the y position of the mouse is too large
+    // This method prevents the bird from disappearing once the y position of the mouse is too large
     public void render(PApplet pa, float x, float time)
     {
-        // make bird white in the day or darker at night
+        // make bird white in the day or darker looking at night
         if(time > 5 && time < 18)
         {
             pa.fill(180);
@@ -81,6 +90,7 @@ public class Bird
             pa.fill(255);
         }
         
+        // mouse x position is in front of birds current position, draw the bird flying to the right
         if(pa.mouseX >= birdX)
         {
             birdX = x;
@@ -100,7 +110,7 @@ public class Bird
 
             pa.noStroke();
         }
-        else
+        else // if mouse x position is behind the birds current x position draw the bird flying to the left
         {
             birdX = x + 1;
 
@@ -119,6 +129,5 @@ public class Bird
 
             pa.noStroke();
         }
-
     }
 }

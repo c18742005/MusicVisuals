@@ -25,6 +25,7 @@ public class Landscape extends Visual
     {
         startMinim();
 
+        // setup variables to be used in project
         cols = w / waveDensity;
         rows = h/ waveDensity;
         waves = new float[cols][rows];
@@ -34,9 +35,8 @@ public class Landscape extends Visual
             clouds[i] = cloud;
         }
 
-        // load an play the audio
+        // load the audio to be played
         loadAudio("viking.mp3");
-        getAudioPlayer().play();
     }
 
     public void settings()
@@ -44,9 +44,11 @@ public class Landscape extends Visual
         fullScreen(P3D, SPAN);
     }
 
+    // method to control what happens when certain keys are pressed
     public void keyPressed()
     {
-        if (key == ' ')
+        // if enter key is pressed change from day to night or vice versa
+        if(key == '\n')
         {
             if(sky.getTime() > 5 && sky.getTime() < 18)
             {
@@ -56,6 +58,12 @@ public class Landscape extends Visual
             {
                 sky.setTime(5);
             }
+        }
+
+        // if space key is pressed begin the music
+        if(key == ' ')
+        {
+            getAudioPlayer().play();
         }
     }
 
@@ -70,6 +78,7 @@ public class Landscape extends Visual
         for (int y = 0; y < rows; y++) 
         {
             float offsetX = 0;
+
             for (int x = 0; x < cols; x++)
             {
                 // map a value from 0 to 1 to -25 to 25 where -25 is deep water and 25 is the tip of a wave
@@ -77,6 +86,7 @@ public class Landscape extends Visual
                 waves[x][y] = map(noise(offsetX, offsetY), 0, 1, -25, 25);
                 offsetX += 0.2;
             }
+
             offsetY += 0.2;
         }
 
@@ -140,25 +150,40 @@ public class Landscape extends Visual
         }
     }
 
-    public void draw() 
+    // method to draw the bird to the screen
+    public void drawBird()
     {
-        calculateAverageAmplitude();
-        colorMode(HSB);
-        sky.renderSky(this); // render the sky
+        // if bird is in the sky draw the bird to screen
+        if(mouseX < width && mouseY < 500)
+        {
+            bird.render(this, mouseX, mouseY, sky.getTime());
+        }
+        else if(mouseY > 500) // if mouse Y position is in the water then draw bird resting on the water
+        {
+            bird.render(this, mouseX, sky.getTime());
+        }
+    }
 
-        // during the night render the moon and reset the sun
+    // Method to draw the sun or moon to the screen depending on the time of day
+    public void drawCelestial()
+    {
+        // during the night render the moon and reset the sun and clouds 
         if(sky.getTime() > 5 && sky.getTime() < 18)
         {
             moon.render(this, getSmoothedAmplitude());
             sun.resetSun();
+
+            // Loop to reset the clouds to their starting position
             for(int i = 0; i < 3; i++)
             {
                 clouds[i].resetCloud();
             }
         }
-        else // during the day render the sun and reset the moon
+        else // during the day render the sun and reset the moon to its starting position
         {
             sun.render(this, getSmoothedAmplitude());
+
+            // Loop to render the clouds to the screen
             for(int i = 0; i < 3; i++)
             {
                 clouds[i].render(this);
@@ -166,16 +191,17 @@ public class Landscape extends Visual
 
             moon.resetMoon();
         }
+    }
 
-        if(mouseX < width && mouseY < 500)
-        {
-            bird.render(this, mouseX, mouseY, sky.getTime());
-        }
-        else if(mouseY > 500)
-        {
-            bird.render(this, mouseX, sky.getTime());
-        }
+    // method to draw objects to the screen
+    public void draw() 
+    {
+        calculateAverageAmplitude();
+        colorMode(HSB);
 
-        renderWater(); // render the water to the screen
+        sky.renderSky(this);    // render the sky
+        drawCelestial();        // render the sun or moon
+        drawBird();             // render the bird to the screen
+        renderWater();          // render the water to the screen
     }
 } 

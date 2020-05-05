@@ -1,3 +1,10 @@
+/*
+    Class to control the cloud objects
+    Draws the clouds to the screen, resets the clouds and moves them
+    Control the clouds size, colour, speed and position on screen
+*/
+
+
 package c18742005;
 
 import processing.core.PApplet;
