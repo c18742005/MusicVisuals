@@ -8,7 +8,6 @@
 	Program Code: DT228/2
 */
 
-
 package c18742005;
 
 public class Main

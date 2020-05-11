@@ -4,7 +4,6 @@
     Control the clouds size, colour, speed and position on screen
 */
 
-
 package c18742005;
 
 import processing.core.PApplet;

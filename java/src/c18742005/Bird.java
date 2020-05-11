@@ -70,7 +70,7 @@ public class Bird
             pa.triangle(pa.mouseX + 12, y - 8, pa.mouseX + 12, y + 7, pa.mouseX, y); // beak
 
             pa.fill(0);
-            pa.ellipse(pa.mouseX + 25, y + 5.5f, 5, 5); // eye
+            pa.ellipse(pa.mouseX + 25, y - 5.5f, 5, 5); // eye
 
             pa.noStroke();
         }
