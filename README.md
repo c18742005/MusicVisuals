@@ -8,7 +8,7 @@ Student Number: C18742005
 This assignment is a visual art piece inspired by the song "If I had a Heart" by Fever Ray. The music piece is the introductory song for the TV show Vikings and is very slow tempoed and eery. When listening to the song I came up with the idea of a viking boat being caught in a storm and becoming lost at sea. The visual piece focuses on following a survivor for days on end with no sign of land and the days and nights slowly melding together. The only sign of life is a small bird that is always flying by and circling the survivor. This bird is controlled by the user of the program. The sun and the moon are constantly whizzing by simulating the passage of time while they both react to the amplitude of the music constantly beating down on the survivor. When night arrives, the clear sea sky and lack of lights come into play and the sky lights up with stars twinkling. The clouds act as a constant reminder of the storm that has just passed with some of them being light and small while others are huge and menacing constantly threatening to start a new storm. Once the song finishes the sun and moon are still and no longer reactive to music signalling the survivors thoughts drifting away.
 
 # Youtube Link
-The link to my YouTube video Demonstrating the assignment can be found here: [![YouTube](https://youtu.be/EysTWhdf-is)]
+The link to my YouTube video Demonstrating the assignment can be found here: [![YouTube](https://img.youtube.com/vi/EysTWhdf-is/1.jpg)](https://youtu.be/EysTWhdf-is)
 
 # Instructions
 - Once the program has started press the SPACEBAR at any time to begin the music.
